@@ -1,39 +1,82 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   computor.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ngbanza <ngbanza@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/19 15:56:48 by ngbanza           #+#    #+#             */
+/*   Updated: 2018/09/19 16:03:06 by ngbanza          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "computor.h"
 
-char    *clear_space(char *str)
+static int         ft_num_check(t_comp **head, double num, int exp)
 {
-    int i;
-    int j;
-    char    *ret;
+    t_comp  *tmp;
 
-    i = 0;
-    while (str[i] != '\0')
-        i++;
-    ret = (char *)malloc(sizeof(char) * (i + 1));
-    i = -1;
-    j = -1;
-    while (str[++i] != '\0')
+    tmp = *head;
+    while (tmp)
     {
-        if (str[i] != ' ')
-            ret[++j] = str[i];
+        if (tmp->exp == exp)
+        {
+            tmp->num += num;
+            return (1);
+        }
+        tmp = tmp->next;
     }
-    ret[++j] = '\0';
-    return (ret);
+    return (0);
 }
 
-int     main(int ac, char **av)
+void        add_values(t_comp **head_ref, double num, int exp)
 {
-    char    *s;
-    t_comp  *num;
+    t_comp  *tmp;
 
-    num = NULL;
-    if (ac == 2)
+    if (!*head_ref)
     {
-        s = clear_space(av[1]);
-        input_read(&num, s);
-        ft_clean(&num);
-        ft_execution(num);
+        *head_ref = (t_comp *)malloc(sizeof(t_comp));
+        (*head_ref)->num = num;
+        (*head_ref)->exp = exp;
+        (*head_ref)->next = NULL;
+        return ;
     }
-    return 0;
+    if (!ft_num_check(head_ref, num, exp))
+    {
+        tmp = (t_comp *)malloc(sizeof(t_comp));
+        tmp->num = num;
+        tmp->exp = exp;
+        tmp->next = *head_ref;
+        *head_ref = tmp;
+    }
 }
 
+static int		deleteNode(t_comp **head_ref) 
+{
+	t_comp *temp = *head_ref, *prev;
+	if (temp != NULL && temp->num == 0)
+	{
+		*head_ref = temp->next;
+		free(temp);
+		return (1);
+	}
+	while (temp != NULL && temp->num != 0)
+	{
+		prev = temp;
+		temp = temp->next;
+	}
+	if (temp == NULL)
+		return (0);
+	prev->next = temp->next;
+	free(temp);
+	return (1);
+}
+
+void	ft_clean(t_comp **head)
+{
+	int ret;
+
+	ret = deleteNode(head);
+	if (ret)
+		ft_clean(head);
+}

@@ -26,7 +26,7 @@ static int     ft_exponent(t_comp *num)
     return (high);
 }
 
-static double  ft_root(double n)
+/*static double  ft_root(double n)
 {
   double    lo;
   double    hi;
@@ -39,7 +39,7 @@ static double  ft_root(double n)
   while (i < 1000)
   {
       mid = (lo + hi) / 2;
-      if (mid * mid == n) 
+      if (mid * mid == n)
         return (mid);
       if (mid * mid > n){
           hi = mid;
@@ -50,17 +50,26 @@ static double  ft_root(double n)
       }
   }
   return (mid);
-}
+}*/
 
 static void    ft_math(double a, double b, double c, int exp)
 {
     double  x1;
     double  x2;
+    int		delta;
 
-    x1 = (-b + ft_root(b * b - 4 * a * c)) / (2 * a);
-    x2 = (-b - ft_root(b * b - 4 * a * c)) / (2 * a);
+    delta = (b * b - 4 * a* c);
+    double n = -b / (2 * a);
+    double m = sqrt(ft_abs(delta)) / (2 * a);
+    x1 = n + m;
+    x2 = n - m;
     if (exp == 2)
-        printf("%.3f\n%.3f\n", x1, x2);
+    {
+	    if (delta >= 0)
+	       	printf("%.3f\n%.3f\n", x1, x2);
+	    else
+	       	printf("%.3f + %.3fi\n%.3f - %.3fi\n", n, m, n, m);
+    }
     else
         printf("%.3f\n", (-c / b));
 }
@@ -69,12 +78,21 @@ void    ft_print(double a, double b, double c, int exp)
 {
     (exp == 2 || exp == 1) ? (printf("Reduced form: ")) : 0;
     if (exp == 2)
+    {
         printf("%.3fX^2 + %.3fX^1 + %.3fX^0 = 0\n", a, b, c);
+	printf("Polynomial degree: %d\n", exp);
+    }
     else if (exp == 1)
+    {
         printf("%.3fX^1 + %.3fX^0 = 0\n", b, c);
+	printf("Polynomial degree: %d\n", exp);
+    }
     else
+    {
         printf("can't solve: %d exponents\n", exp);
-	(exp == 2 || exp == 1) ? ft_math(a, b, c, exp) : 0;
+	printf("The polynomial degree is stricly greater than 2, I can't solve.\n");
+    }
+(exp == 2 || exp == 1) ? ft_math(a, b, c, exp) : 0;
 }
 
 void    ft_execution(t_comp *num)

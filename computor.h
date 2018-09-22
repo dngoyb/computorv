@@ -16,7 +16,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-
+#include <math.h>
+#define ABS(x) ((x < 0) ? -x : x)
 typedef struct      s_comp
 {
     int             exp;
@@ -28,5 +29,5 @@ void        add_values(t_comp **head_ref, double num, int exp);
 void        ft_clean(t_comp **head);
 void        input_read(t_comp **num, char *s);
 void        ft_execution(t_comp *num);
-
+int		ft_abs(int x);
 #endif

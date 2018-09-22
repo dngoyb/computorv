@@ -33,6 +33,13 @@ static char    *clear_space(char *str)
 	return (ret);
 }
 
+int ft_abs(int x)
+{
+        if (x >= 0)
+	    return (x);
+        else
+	    return (-x);
+}
 int     main(int ac, char **av)
 {
 	char    *s;

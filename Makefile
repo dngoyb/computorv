@@ -14,7 +14,7 @@ NAME = Computor
 
 SRC = computor.c ft_execution.c main.c input_read.c \
 
-FLAG = -Wall -Werror -Wextra
+FLAG = -Wall -Werror -Wextra -lm
 
 SILENT = --no-print-directory
 

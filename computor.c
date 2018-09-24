@@ -6,7 +6,7 @@
 /*   By: ngbanza <ngbanza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 15:56:48 by ngbanza           #+#    #+#             */
-/*   Updated: 2018/09/19 16:03:06 by ngbanza          ###   ########.fr       */
+/*   Updated: 2018/09/24 14:17:32 by ngbanza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ void        add_values(t_comp **head_ref, double num, int exp)
 
 static int		deleteNode(t_comp **head_ref) 
 {
-	t_comp *temp = *head_ref, *prev;
+	t_comp	*temp;
+	t_comp	*prev;
+
+	tmp = *head_ref;
 	if (temp != NULL && temp->num == 0)
 	{
 		*head_ref = temp->next;

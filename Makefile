@@ -6,7 +6,7 @@
 #    By: ngbanza <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/19 16:06:42 by ngbanza           #+#    #+#              #
-#    Updated: 2018/09/19 16:06:49 by ngbanza          ###   ########.fr        #
+#    Updated: 2018/09/24 13:48:15 by ngbanza          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = Computor
 
 SRC = computor.c ft_execution.c main.c input_read.c \
 
-FLAG = -Wall -Werror -Wextra -lm
+FLAG = -Wall -Werror -Wextra #-lm
 
 SILENT = --no-print-directory
 

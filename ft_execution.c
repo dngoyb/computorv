@@ -6,7 +6,7 @@
 /*   By: ngbanza <ngbanza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 15:48:31 by ngbanza           #+#    #+#             */
-/*   Updated: 2018/09/19 16:15:11 by ngbanza          ###   ########.fr       */
+/*   Updated: 2018/09/24 14:09:06 by ngbanza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int     ft_exponent(t_comp *num)
     return (high);
 }
 
-/*static double  ft_root(double n)
+static double  ft_root(double n)
 {
   double    lo;
   double    hi;
@@ -50,7 +50,7 @@ static int     ft_exponent(t_comp *num)
       }
   }
   return (mid);
-}*/
+}
 
 static void    ft_math(double a, double b, double c, int exp)
 {
@@ -60,7 +60,7 @@ static void    ft_math(double a, double b, double c, int exp)
 
     delta = (b * b - 4 * a* c);
     double n = -b / (2 * a);
-    double m = sqrt(ft_abs(delta)) / (2 * a);
+    double m = ft_root(ft_abs(delta)) / (2 * a);
     x1 = n + m;
     x2 = n - m;
     if (exp == 2)
@@ -80,19 +80,25 @@ void    ft_print(double a, double b, double c, int exp)
     if (exp == 2)
     {
         printf("%.3fX^2 + %.3fX^1 + %.3fX^0 = 0\n", a, b, c);
-	printf("Polynomial degree: %d\n", exp);
+		printf("Polynomial degree: %d\n", exp);
+		if ((b * b - 4 * a* c) > 0)
+			printf("Discriminant is strictly positive, and the two values are:\n");
+		else if ((b * b - 4 * a* c) < 0)
+			printf("Discriminant is strictly negative and the two values are:\n");
+		else
+			printf("Discriminant is strictly zero and the two values are:\n");
     }
     else if (exp == 1)
     {
         printf("%.3fX^1 + %.3fX^0 = 0\n", b, c);
-	printf("Polynomial degree: %d\n", exp);
+		printf("Polynomial degree: %d\n", exp);
     }
     else
     {
         printf("can't solve: %d exponents\n", exp);
-	printf("The polynomial degree is stricly greater than 2, I can't solve.\n");
+		printf("The polynomial degree is stricly greater than 2, I can't solve.\n");
     }
-(exp == 2 || exp == 1) ? ft_math(a, b, c, exp) : 0;
+	(exp == 2 || exp == 1) ? ft_math(a, b, c, exp) : 0;
 }
 
 void    ft_execution(t_comp *num)

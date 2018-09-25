@@ -6,55 +6,55 @@
 /*   By: ngbanza <ngbanza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 15:56:48 by ngbanza           #+#    #+#             */
-/*   Updated: 2018/09/24 14:17:32 by ngbanza          ###   ########.fr       */
+/*   Updated: 2018/09/25 15:04:48 by ngbanza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "computor.h"
 
-static int         ft_num_check(t_comp **head, double num, int exp)
+static int		ft_num_check(t_comp **head, double num, int exp)
 {
-    t_comp  *tmp;
+	t_comp		*tmp;
 
-    tmp = *head;
-    while (tmp)
-    {
-        if (tmp->exp == exp)
-        {
-            tmp->num += num;
-            return (1);
-        }
-        tmp = tmp->next;
-    }
-    return (0);
+	tmp = *head;
+	while (tmp)
+	{
+		if (tmp->exp == exp)
+		{
+			tmp->num += num;
+			return (1);
+		}
+		tmp = tmp->next;
+	}
+	return (0);
 }
 
-void        add_values(t_comp **head_ref, double num, int exp)
+void			add_values(t_comp **head_ref, double num, int exp)
 {
-    t_comp  *tmp;
+	t_comp		*tmp;
 
-    if (!*head_ref)
-    {
-        *head_ref = (t_comp *)malloc(sizeof(t_comp));
-        (*head_ref)->num = num;
-        (*head_ref)->exp = exp;
-        (*head_ref)->next = NULL;
-        return ;
-    }
-    if (!ft_num_check(head_ref, num, exp))
-    {
-        tmp = (t_comp *)malloc(sizeof(t_comp));
-        tmp->num = num;
-        tmp->exp = exp;
-        tmp->next = *head_ref;
-        *head_ref = tmp;
-    }
+	if (!*head_ref)
+	{
+		*head_ref = (t_comp *)malloc(sizeof(t_comp));
+		(*head_ref)->num = num;
+		(*head_ref)->exp = exp;
+		(*head_ref)->next = NULL;
+		return ;
+	}
+	if (!ft_num_check(head_ref, num, exp))
+	{
+		tmp = (t_comp *)malloc(sizeof(t_comp));
+		tmp->num = num;
+		tmp->exp = exp;
+		tmp->next = *head_ref;
+		*head_ref = tmp;
+	}
 }
 
-static int		deleteNode(t_comp **head_ref) 
+static int		delete_node(t_comp **head_ref)
 {
-	t_comp	*temp;
-	t_comp	*prev;
+	t_comp		*temp;
+	t_comp		*prev;
 
 	tmp = *head_ref;
 	if (temp != NULL && temp->num == 0)
@@ -75,11 +75,11 @@ static int		deleteNode(t_comp **head_ref)
 	return (1);
 }
 
-void	ft_clean(t_comp **head)
+void			ft_clean(t_comp **head)
 {
-	int ret;
+	int		ret;
 
-	ret = deleteNode(head);
+	ret = delete_node(head);
 	if (ret)
 		ft_clean(head);
 }

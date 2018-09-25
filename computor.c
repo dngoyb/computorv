@@ -6,7 +6,7 @@
 /*   By: ngbanza <ngbanza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 15:56:48 by ngbanza           #+#    #+#             */
-/*   Updated: 2018/09/25 15:04:48 by ngbanza          ###   ########.fr       */
+/*   Updated: 2018/09/25 15:19:11 by ngbanza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int		delete_node(t_comp **head_ref)
 	t_comp		*temp;
 	t_comp		*prev;
 
-	tmp = *head_ref;
+	temp = *head_ref;
 	if (temp != NULL && temp->num == 0)
 	{
 		*head_ref = temp->next;

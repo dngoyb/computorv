@@ -33,10 +33,10 @@ static double	ft_root(double n)
 	double	mid;
 	int		i;
 
-	i = 0;
+	i = -1;
 	lo = 0;
 	hi = n;
-	while (i < 1000)
+	while (++i < 1000)
 	{
 		mid = (lo + hi) / 2;
 		if (mid * mid == n)
